@@ -89,7 +89,7 @@ import type { User, Note } from './types';
 const host = ref('');
 const token = ref('');
 const status = ref('');
-const error = ref('');
+const error = ref<string>('');
 const isLoading = ref(false);
 const progress = ref({ unpinned: 0, deleted: 0, total: 0 });
 
@@ -143,8 +143,8 @@ const handleSubmit = async () => {
     }
 
     status.value = `完了！${progress.value.unpinned}個のピン留めを解除し、${deleted}個のノートを削除しました。`;
-  } catch (error) {
-    error.value = (error as Error).message;
+  } catch (err) {
+    error.value = err instanceof Error ? err.message : String(err);
   } finally {
     isLoading.value = false;
   }

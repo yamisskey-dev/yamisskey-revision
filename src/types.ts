@@ -19,15 +19,15 @@ export interface Note {
   renoteId?: string;
   text?: string;
   userId?: string;
-
-  toString(): string {
-    const text = this.cw || this.text || "(No text)";
-    const renoteText = this.renote ? ` RN: ${this.renote.toString()}` : '';
-    const replyText = this.reply ? ` RE: ${this.reply.toString()}` : '';
-    const mediaText = this.mediaIds?.length ? ` (${this.mediaIds.length} medias)` : '';
-    return `${text}${renoteText}${replyText}${mediaText}`;
-  }
 }
+
+export const noteToString = (note: Note): string => {
+  const text = note.cw || note.text || "(No text)";
+  const renoteText = note.renote ? ` RN: ${noteToString(note.renote)}` : '';
+  const replyText = note.reply ? ` RE: ${noteToString(note.reply)}` : '';
+  const mediaText = note.mediaIds?.length ? ` (${note.mediaIds.length} medias)` : '';
+  return `${text}${renoteText}${replyText}${mediaText}`;
+};
 
 export interface MisskeyError {
   message?: string;

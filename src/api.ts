@@ -1,3 +1,5 @@
+import type { User, Note, MisskeyError } from './types';
+
 export class MisskeyAPI {
   private endpoint: string;
   private token: string;
