@@ -45,7 +45,7 @@ export class MisskeyAPI {
   }
 
   async unpinNote(noteId: string): Promise<void> {
-    await this.post('notes/unpin', { noteId });
+    await this.post('i/unpin', { noteId });
   }
 
   async deleteNote(noteId: string): Promise<void> {
