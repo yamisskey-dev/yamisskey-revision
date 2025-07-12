@@ -1,14 +1,23 @@
 <template>
-  <div class="maintenance-container" style="background-image: url('/wallpaper.jpg')">
+  <div
+    class="maintenance-container"
+    style="background-image: url('/wallpaper.jpg')"
+  >
     <div class="background-overlay" />
-    
+
     <div class="maintenance-card">
       <div class="glass-effect" />
 
       <div class="icon-container">
         <div class="icon-wrapper">
           <div class="maintenance-icon">
-            <img src="/favicon.ico" alt="Logo" class="favicon-icon" width="64" height="64" />
+            <img
+              src="/favicon.ico"
+              alt="Logo"
+              class="favicon-icon"
+              width="64"
+              height="64"
+            />
           </div>
         </div>
       </div>
@@ -44,11 +53,7 @@
           />
         </div>
 
-        <button
-          type="submit"
-          :disabled="isLoading"
-          class="submit-button"
-        >
+        <button type="submit" :disabled="isLoading" class="submit-button">
           <Loader2 v-if="isLoading" class="icon" />
           <Trash2 v-else class="icon" />
           {{ isLoading ? '処理中...' : 'クリーンアップを開始' }}
@@ -101,14 +106,18 @@ const handleSubmit = async () => {
 
   try {
     const api = new MisskeyAPI(host.value, token.value);
-    
+
     // Fetch user info
     const user = await api.getUser();
-    status.value = `アカウントを確認:\n ${user.name ?? user.username} @${user.username}\n ${user.notesCount} ノート\n ID: ${user.id}`;
-    
+    status.value = `アカウントを確認:\n ${user.name ?? user.username} @${
+      user.username
+    }\n ${user.notesCount} ノート\n ID: ${user.id}`;
+
     // Unpin notes
     if (user.pinnedNotes?.length) {
-      console.log(`${user.pinnedNotes.length}個のピン留めされたノートを見つけました`);
+      console.log(
+        `${user.pinnedNotes.length}個のピン留めされたノートを見つけました`
+      );
       for (const note of user.pinnedNotes) {
         if (note.id) {
           await api.unpinNote(note.id);
@@ -128,13 +137,14 @@ const handleSubmit = async () => {
       for (const note of notes) {
         if (note.id) {
           try {
-            await api.deleteNote(note.id);
-            deleted++;
+            await api.deleteNote(note.id).then(() => deleted++);
             progress.value.deleted = deleted;
             progress.value.total = user.notesCount;
             console.log(`ノートを削除: ${note.toString()}`);
           } catch (error) {
-            console.error(`ノート ${note.id} の削除に失敗: ${(error as Error).message}`);
+            console.error(
+              `ノート ${note.id} の削除に失敗: ${(error as Error).message}`
+            );
           }
         }
       }
