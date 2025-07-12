@@ -25,9 +25,8 @@ export class MisskeyAPI {
           const now = Date.now();
           const diff = (error.info.resetMs ?? 1000 * 10) - now;
           console.error(`Ratelimited. retrying after ${diff / 1000}second...`);
-          setTimeout(() => {
-            this.post(path, content);
-          }, diff);
+          await new Promise((_) => setTimeout(_, diff));
+          return await this.post(path, content);
         }
         const error = (await response.json()) as MisskeyError;
         throw new Error(error.message || 'API request failed');
