@@ -330,12 +330,21 @@ const handleSubmit = async () => {
 /* Add new styles for error and status messages */
 .error-message,
 .status-message {
+  color: #fff;
   margin-top: 1rem;
   padding: 1rem;
   border-radius: 12px;
   display: flex;
   align-items: start;
   gap: 0.75rem;
+}
+
+.error-message .icon {
+  color: #ff69b4;
+}
+
+.status-message .icon {
+  color: #adff2f;
 }
 
 .error-message {
@@ -350,6 +359,10 @@ const handleSubmit = async () => {
 
 .progress-container {
   margin-top: 1.5rem;
+}
+
+.progress-text {
+  color: #808080;
 }
 
 /* Add responsive styles */
