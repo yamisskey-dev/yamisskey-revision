@@ -32,6 +32,11 @@ export class MisskeyAPI {
         throw new Error(error.message || 'API request failed');
       }
 
+      //? return empty json
+      if (response.status == 204) {
+        return {} as T;
+      }
+
       return response.json();
     } catch (error) {
       console.error(`API request failed for ${path}:`, error);
