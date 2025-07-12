@@ -22,16 +22,37 @@ export interface Note {
 }
 
 export const noteToString = (note: Note): string => {
-  const text = note.cw || note.text || "(No text)";
+  const text = note.cw || note.text || '(No text)';
   const renoteText = note.renote ? ` RN: ${noteToString(note.renote)}` : '';
   const replyText = note.reply ? ` RE: ${noteToString(note.reply)}` : '';
-  const mediaText = note.mediaIds?.length ? ` (${note.mediaIds.length} medias)` : '';
+  const mediaText = note.mediaIds?.length
+    ? ` (${note.mediaIds.length} medias)`
+    : '';
   return `${text}${renoteText}${replyText}${mediaText}`;
 };
 
+/** [API Doc](https://misskey.io/api-doc) */
 export interface MisskeyError {
   message?: string;
   code?: string;
   id?: string;
   kind?: string;
+}
+
+/** [API Doc](https://misskey.io/api-doc) */
+export interface MisskeyRateLimited {
+  error: {
+    message: string;
+    code: string;
+    id: string;
+    kind: string;
+    info: {
+      remaining: number;
+      /** Unix Second */
+      reset: number;
+      /** Unix Milisecond */
+      resetMs: number;
+      total: number;
+    };
+  };
 }
