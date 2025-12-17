@@ -12,7 +12,7 @@
         <div class="icon-wrapper">
           <div class="maintenance-icon">
             <img
-              src="/favicon.ico"
+              src="https://raw.githubusercontent.com/yamisskey-dev/yamisskey-assets/main/yami.ski/yami-logo-85x85.png"
               alt="Logo"
               class="favicon-icon"
               width="64"
