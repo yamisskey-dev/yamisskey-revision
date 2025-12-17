@@ -23,7 +23,7 @@
       </div>
 
       <div class="header">
-        <h1>闇歴史修正</h1>
+        <h1>闇消し</h1>
         <div class="status-badge">
           <div class="pulse" />
           <span>ノートを安全に削除します</span>
