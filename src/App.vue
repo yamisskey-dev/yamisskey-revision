@@ -1,7 +1,7 @@
 <template>
   <div
     class="maintenance-container"
-    style="background-image: url('/wallpaper.jpg')"
+    style="background-image: url('https://angelkawaii.com/wp-content/uploads/2024/01/33.png')"
   >
     <div class="background-overlay" />
 
